@@ -24,8 +24,6 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  MyHomePage({Key? key}) : super(key: key);
-
   final List<Transaction> transaction = [
     Transaction(
       id: 't1',
@@ -40,6 +38,12 @@ class MyHomePage extends StatelessWidget {
       date: DateTime.now(),
     ),
   ];
+  // String? titleInput;
+  // String? amountInput;
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,8 @@ class MyHomePage extends StatelessWidget {
         title: const Text('Flutter app'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        //mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           // ignore: sized_box_for_whitespace
           Container(
@@ -57,6 +62,36 @@ class MyHomePage extends StatelessWidget {
               color: Colors.blue,
               child: Text('CHART!'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+                    // onChanged: (value) {
+                    //   titleInput = value;
+                    // },
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(labelText: 'Amount'),
+                    controller: amountController,
+                    // onChanged: (value) => amountInput = value,
+                  ),
+                  FlatButton(
+                    textColor: Colors.purple,
+                    child: const Text('Add Transaction'),
+                    onPressed: () {
+                      print(titleController.text);
+                    },
+                  )
+                ],
+              ),
             ),
           ),
           Column(
