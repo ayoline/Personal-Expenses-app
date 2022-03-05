@@ -1,5 +1,4 @@
 // ignore_for_file: deprecated_member_use
-
 import 'package:flutter/material.dart';
 
 import './widgets/chart.dart';
@@ -8,6 +7,12 @@ import './widgets/transaction_list.dart';
 import './models/transaction.dart';
 
 void main() {
+  // To prevent the screen to rotate
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
   runApp(const MyApp());
 }
 
@@ -134,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
                       MediaQuery.of(context).padding.top) *
-                  0.4,
+                  0.3,
               child: Chart(_recentTransaction),
             ),
             // ignore: sized_box_for_whitespace
@@ -142,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> {
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
                       MediaQuery.of(context).padding.top) *
-                  0.6,
+                  0.7,
               child: TransactionList(_userTransactions, _deleteTransaction),
             ),
           ],
