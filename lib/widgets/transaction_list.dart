@@ -1,5 +1,4 @@
 // ignore_for_file: sized_box_for_whitespace
-
 import 'package:flutter/material.dart';
 
 import '../models/transaction.dart';
@@ -35,14 +34,13 @@ class TransactionList extends StatelessWidget {
               ],
             );
           })
-        : ListView.builder(
-            itemBuilder: (ctx, index) {
-              return TransactionItem(
-                transaction: transactions[index],
-                deleteTx: deleteTx,
-              );
-            },
-            itemCount: transactions.length,
-          );
+        : ListView(
+            children: transactions
+                .map((tx) => TransactionItem(
+                      key: ValueKey(tx.id),
+                      transaction: tx,
+                      deleteTx: deleteTx,
+                    ))
+                .toList());
   }
 }
